@@ -1,0 +1,247 @@
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+:root {
+    --bg: #f9fafc;
+    --text: #222;
+    --accent: #007acc;
+    --card-bg: #ffffff;
+    --border: #dddddd;
+}
+
+/* Dark mode variables */
+:root.dark {
+    --bg: #1a1d22;
+    --text: #e8e8e8;
+    --accent: #4ba3ff;
+    --card-bg: #262a31;
+    --border: #444;
+}
+
+/* Global layout rules */
+html, body {
+    height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+
+/* Layout wrapper */
+.layout {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* vertical layout for mobile */
+    min-height: 0; /* IMPORTANT in nested flex layouts */
+}
+
+
+/* Sidebar Style */
+aside {
+    position: relative; /* not sticky by default */
+    flex-shrink: 0;
+    width: 260px;
+    border-right: 1px solid var(--border);
+    background: var(--card-bg);
+    z-index: 10;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    align-self: stretch;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+
+/* Profile Image */
+.profile img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    margin-bottom: 1rem;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    padding: 2rem 3rem;
+    max-width: 900px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Headings */
+h2 {
+    font-size: 1.3rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.2rem;
+    margin-top: 0;
+}
+
+/* Collapsibles */
+.collapsible {
+    padding: 1rem;
+}
+
+.section-toggle {
+    all: unset;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: left;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background 0.3s ease;
+}
+
+.section-toggle:hover {
+    background: #005f99;
+}
+
+/* Rotating arrow */
+.section-toggle::after {
+    content: "▸";
+    transition: transform 0.2s ease;
+}
+
+/* Rotate when open */
+.section-toggle[aria-expanded="true"]::after {
+    transform: rotate(90deg);
+}
+
+/* Dropdown content */
+.section-content {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 6px 6px 6px;
+    background: var(--card-bg);
+    animation: fadeIn 0.2s ease;
+}
+
+/* Hide when collapsed */
+[hidden] {
+    display: none !important;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Experience job list */
+.job header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.job-toggle {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.job-toggle:hover {
+    background: #005f99;
+}
+
+.job-details {
+    margin-top: 0.5rem;
+    animation: fadeIn 0.2s ease;
+}
+
+/* Skills list */
+#skills ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#skills li {
+    margin: 0.3rem 0;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 1rem;
+    border-top: 1px solid var(--border);
+    background: var(--card-bg);
+    transition: background 0.3s ease, border-color 0.3s ease;
+    position: static; /* prevents overlapping */
+}
+
+
+/* Links */
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Desktop layout */
+@media (min-width: 900px) {
+    .layout {
+        flex-direction: row; /* side-by-side layout */
+        align-items: flex-start;
+    }
+
+    aside {
+    position: sticky;
+    top: 0;
+    width: 260px;
+    height: 100vh;        /* ADD THIS */
+    overflow-y: auto;     /* ADD THIS */
+   }
+
+    main {
+        padding: 2rem 3rem;
+    }
+}
