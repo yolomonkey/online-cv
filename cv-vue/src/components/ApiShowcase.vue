@@ -1,9 +1,9 @@
 <template>
   <section>
-    <h2>Selected GitHub Projects</h2>
+    <h2>Public GitHub projects</h2>
 
     <p class="api-sub">
-      Automatically loaded from GitHub for user <strong>{{ username }}</strong>
+      Projects from my Github Account <strong>{{ username }}</strong>
     </p>
 
     <div v-if="loading">Loading projects…</div>
@@ -62,7 +62,7 @@ onMounted(async () => {
     error.value = null;
 
     const res = await fetch(
-      `https://api.github.com/users/yolomonkey/repos`
+      `https://api.github.com/users/yolomonkey/repos?sort=updated`
     );
 
     if (!res.ok) {

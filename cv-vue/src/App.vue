@@ -1,11 +1,6 @@
 <template>
   <div class="layout">
-    <ProfileSidebar
-      :profile="profile"
-      :skills="skills"
-      :isDark="isDark"
-      @toggleTheme="toggleTheme"
-    />
+    <ProfileSidebar :profile="profile" :skills="skills" :isDark="isDark" @toggleTheme="toggleTheme" />
 
     <main>
       <section id="about">
@@ -18,7 +13,10 @@
       <EducationSection :items="education" />
 
       <!-- API requirement -->
-      <ApiShowcase username="yolomonkey" />
+      <ApiShowcase username="yolomonkey" :includeRepos="[
+        'online-cv'
+      ]" />
+
     </main>
   </div>
 

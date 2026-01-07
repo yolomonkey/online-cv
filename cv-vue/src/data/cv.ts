@@ -2,11 +2,11 @@
 import type { EducationItem, Job, Profile, Skill }  from "./types";
 
 export const profile: Profile = {
-    name: "Zan Mo",
+    name: "Zan Molnar",
     role: "Cyber Security Student",
     email: "zan.molnarlm@gmail.com",
     phone: "0176 76612431",
-    imageUrl: "../assets/placeholder.jpg"
+    imageUrl: "/placeholder.jpg"
 };
 
 export const skills: Skill[] = [
